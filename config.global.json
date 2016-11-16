@@ -1,0 +1,12 @@
+{
+	"token": "telgram_bot_token",
+	"lastTitle": "",
+	"chatId": "@id_telegram_chat",
+	"RSS": "url_of_rss",
+	"twitter": {
+		"consumer_key": "",
+		"consumer_secret": "",
+		"access_token_key": "",
+		"access_token_secret": ""
+	}
+}
