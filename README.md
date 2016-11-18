@@ -26,6 +26,7 @@ config.[development|production].json - use if You wish to divided dev and prod c
 
 - HumanJSON for config files [hjson](https://www.npmjs.com/package/hjson)
 - More and best logging
+- Tests
 
 ## History
 
