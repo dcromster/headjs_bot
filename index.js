@@ -1,4 +1,4 @@
-// v1.1.0 - 161116
+// v1.1.1 - 180117
 
 const botr = require('telegram-api/build');
 const Twitter = require('twitter');
@@ -47,7 +47,23 @@ function ScanNews() { // Scaning RSS for new records
 				poststring += ' ' + data[0].description;
 			}
 
+			// Posting to twitter
+			const client = new Twitter({
+				consumer_key: configuration.global.twitter.consumer_key,
+				consumer_secret: configuration.global.twitter.consumer_secret,
+				access_token_key: configuration.global.twitter.access_token_key,
+				access_token_secret: configuration.global.twitter.access_token_secret
+			});
+
+			client.post('statuses/update', {status: poststring}, function(error, tweet, response) {
+				if (!error) {
+					console.log(tweet);
+				}
+			});
+
 			// Posting to Telegram channel
+			/// Remove all html tags
+			const poststring1 = poststring.replace(/<\/?[^>]+(>|$)/g, "");
 			/// Configure the request
 			const options = {
 				url: 'https://api.telegram.org/bot' + configuration.global.token + '/sendMessage',
@@ -68,20 +84,6 @@ function ScanNews() { // Scaning RSS for new records
 					console.error(error);
 				}
 			})
-
-			// Posting to twitter
-			const client = new Twitter({
-				consumer_key: configuration.global.twitter.consumer_key,
-				consumer_secret: configuration.global.twitter.consumer_secret,
-				access_token_key: configuration.global.twitter.access_token_key,
-				access_token_secret: configuration.global.twitter.access_token_secret
-			});
-
-			client.post('statuses/update', {status: poststring}, function(error, tweet, response) {
-				if (!error) {
-					console.log(tweet);
-				}
-			});
 
 		};
 	})

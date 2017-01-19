@@ -30,7 +30,8 @@ config.[development|production].json - use if You wish to divided dev and prod c
 
 ## History
 
-- 1.1.0 161116 +Post to Twitter
+- 1.1.1 181117 * Remove html tags from poststring to Telegram
+- 1.1.0 161116 + Post to Twitter
 - 1.0.0 Post to Telegram channel
 
 ## Contact
